@@ -33,6 +33,15 @@ class UserController extends Controller
 
         return redirect()->route('user.index');
     }
+    public function UserEdit($id){
+        $user = User::where('id',$id)->firstOrFail();
+        return view('users.edit')->with('user', $user);
+    }
 
+    public function UserDelete($id){
+        $user = User::where('id', $id)->firstOrFail();
+        $user->delete();
+        return redirect('users.index')->with('Deleted', 'user deleted successfully');
+    }
 }
 

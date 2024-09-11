@@ -29,6 +29,7 @@ class QueryController extends Controller
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('password')), // Hash the password using bcrypt
         ]);
+        
 
         // Redirect or return a response
         return redirect()->back()->with('success', 'User created successfully!');

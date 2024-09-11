@@ -13,27 +13,32 @@
   <h2>Basic Table</h2>
   <p>The .table class adds basic styling (light padding and horizontal dividers) to a table:</p>
   
-<a href="{{ route('user.create') }}" class="btn btn-primary btn-sm">Add User</a>
+  <a href="{{ route('user.create') }}" class="btn btn-primary btn-sm">Add User</a>
   <table class="table">
     <thead>
       <tr>
-        <th>id</th>
-        <th>name</th>
-        <th>email</th>
-        <th>Create date </th>
-        <th>actions </th>
-
+        <th>Id</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Password</th>
+        <!-- <th>Create Date</th> -->
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
       @foreach($users as $item)
       <tr>
-        <td>{{$item->id}}</td>
-        <td>{{$item->name }}</td>
-        <td>{{$item->email}}</td>
-        <td>{{$item->created_at}}</td>
+        <td>{{ $item->id }}</td>
+        <td>{{ $item->name }}</td>
+        <td>{{ $item->email }}</td>
+        <td>{{ $item->password }}</td>
+        <!-- <td>{{ $item->created_at }}</td> -->
+        <td>
+          <a href="{{ route('user.edit', $item->id) }}" class="btn btn-warning btn-sm">Edit</a>     
+          <a href="{{ route('user.delete', $item->id) }}" class="btn btn-warning btn-sm">Delete</a>     
+        </td>
       </tr>
-     @endforeach
+      @endforeach
     </tbody>
   </table>
 </div>
