@@ -60,4 +60,4 @@ class UserController extends Controller
         return redirect()->route('user.index')->with('Deleted', 'user deleted successfully');
     }
 }
-
+///abhishek mishra
