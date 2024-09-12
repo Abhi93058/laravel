@@ -24,25 +24,25 @@
 </head>
 <body>
     <div class="custom-form">
-        <form action="{{route('user.edit')}}" method="post">
+        <form action="{{route('user.update', $user->id)}}" method="post">
             @csrf
         <div class="mb-3">
                 <label for="" class="form-label">Name</label>
-                <input type="text" class="form-control"  id="exampleInputEmail1" name="name" aria-describedby="emailHelp">
+                <input type="text" class="form-control" value="{{isset($user) ? $user->name : old('name')}}"  id="exampleInputEmail1" name="name" aria-describedby="emailHelp">
                 @error('name')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Email address</label>
-                <input type="email" class="form-control"  id="exampleInputEmail1" name="email" aria-describedby="emailHelp">
+                <input type="email" class="form-control"  id="exampleInputEmail1" name="email" aria-describedby="emailHelp" value="{{isset($user) ? $user->email : old('email')}}" >
                 @error('email')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" class="form-control" name="password" id="exampleInputPassword1">
+                <input type="password" class="form-control" name="password"  >
                 @error('password')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror

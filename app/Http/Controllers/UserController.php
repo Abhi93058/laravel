@@ -31,17 +31,33 @@ class UserController extends Controller
             'password' =>$request->password,
         ]);
 
-        return redirect()->route('user.index');
+        return redirect()->route('user.index')->with('success','user updated successfully');
     }
     public function UserEdit($id){
-        $user = User::where('id',$id)->firstOrFail();
+        $user = User::findOrFail($id);
+       
         return view('users.edit')->with('user', $user);
     }
 
+    public function UserUpdate(Request $request, $id){
+        $validated = $request->validate([
+            'name' => 'required|max:32',
+            'email' => 'required|email|unique:users,email', 
+            'password' => 'required'
+        ]);
+
+            $user =  User::findOrFail($id);
+
+            $user->update($validated);
+
+            return redirect()->route('user.index')->with('success','user updated successfully');
+
+    }
+
     public function UserDelete($id){
-        $user = User::where('id', $id)->firstOrFail();
+        $user = User::findOrFail($id);
         $user->delete();
-        return redirect('users.index')->with('Deleted', 'user deleted successfully');
+        return redirect()->route('user.index')->with('Deleted', 'user deleted successfully');
     }
 }
 
